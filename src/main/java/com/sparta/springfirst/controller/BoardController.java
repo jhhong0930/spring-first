@@ -1,0 +1,73 @@
+package com.sparta.springfirst.controller;
+
+import com.sparta.springfirst.dto.BoardDto;
+import com.sparta.springfirst.service.BoardService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Slf4j
+@RequiredArgsConstructor
+@Controller
+public class BoardController {
+
+    private final BoardService service;
+
+    @GetMapping("/")
+    public String mainPage() {
+        return "redirect:/boards/list";
+    }
+
+    /**
+     * 목록 화면
+     */
+    @GetMapping("/boards/list")
+    public void getList(Model model) {
+        model.addAttribute("result", service.getList());
+    }
+
+    /**
+     * 새 게시글 등록 폼
+     */
+    @GetMapping("/boards")
+    public void register() {
+
+    }
+
+    /**
+     * 게시글 등록
+     * @param dto
+     */
+    @PostMapping("/boards")
+    public String register(BoardDto dto, RedirectAttributes rttr) {
+
+        log.info("dto = {}", dto);
+
+        Long id = service.register(dto);
+
+        rttr.addFlashAttribute("msg", id);
+
+        return "redirect:/boards/list";
+    }
+
+    /**
+     * 게시글 조회
+     * @param id
+     */
+    @GetMapping("/boards/{id}")
+    public void read(Long id, Model model) {
+
+        log.info("id = {}", id);
+
+        BoardDto dto = service.read(id);
+
+        model.addAttribute("dto", dto);
+    }
+
+}
