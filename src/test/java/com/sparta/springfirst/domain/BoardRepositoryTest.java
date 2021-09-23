@@ -16,7 +16,7 @@ class BoardRepositoryTest {
     @Autowired
     private BoardRepository repository;
 
-    @Test
+//    @Test
     @DisplayName("셈플 데이터 추가")
     void testRegister() {
 
