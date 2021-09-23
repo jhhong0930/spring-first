@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
+@RequestMapping("/boards")
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -25,7 +26,7 @@ public class BoardController {
     /**
      * 목록 화면
      */
-    @GetMapping("/boards/list")
+    @GetMapping("/list")
     public void getList(PageRequestDto pageRequestDto, Model model) {
 
         log.info("list = {}", pageRequestDto);
@@ -36,7 +37,7 @@ public class BoardController {
     /**
      * 새 게시글 등록 폼
      */
-    @GetMapping("/boards")
+    @GetMapping("/new")
     public String register() {
         return "boards/register";
     }
@@ -45,7 +46,7 @@ public class BoardController {
      * 게시글 등록
      * @param dto
      */
-    @PostMapping("/boards")
+    @PostMapping("/new")
     public String register(BoardDto dto, RedirectAttributes rttr) {
 
         log.info("dto = {}", dto);
@@ -61,7 +62,7 @@ public class BoardController {
      * 게시글 조회
      * @param id
      */
-    @GetMapping("/boards/{id}")
+    @GetMapping("/{id}")
     public String read(@PathVariable Long id, Model model) {
 
         log.info("id = {}", id);
