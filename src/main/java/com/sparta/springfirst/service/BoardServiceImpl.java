@@ -36,7 +36,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<Board> getList() {
 
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "regdate"));
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "regDate"));
     }
 
     @Override
