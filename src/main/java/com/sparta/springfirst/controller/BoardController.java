@@ -33,8 +33,8 @@ public class BoardController {
      * 새 게시글 등록 폼
      */
     @GetMapping("/boards")
-    public void register() {
-
+    public String register() {
+        return "boards/register";
     }
 
     /**
