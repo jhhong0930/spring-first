@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
@@ -61,13 +58,15 @@ public class BoardController {
      * @param id
      */
     @GetMapping("/boards/{id}")
-    public void read(Long id, Model model) {
+    public String read(@PathVariable Long id, Model model) {
 
         log.info("id = {}", id);
 
         BoardDto dto = service.read(id);
 
         model.addAttribute("dto", dto);
+
+        return "/boards/read";
     }
 
 }

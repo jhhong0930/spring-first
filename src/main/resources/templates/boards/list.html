@@ -24,15 +24,11 @@
             </thead>
 
             <tbody>
-            <tr th:each="dto : ${result}">
-                <th scope="row">
-
-                        [[${dto.id}]]
-                    </a>
-                </th>
-                <td>[[${dto.title}]]</td>
-                <td>[[${dto.writer}]]</td>
-                <td>[[${#temporals.format(dto.regDate, 'MM/dd hh:mm')}]]</td>
+            <tr th:each="board : ${result}" th:onclick="location.href='/boards/[[${board.id}]]'">
+                <th scope="row">[[${board.id}]]</th>
+                <td>[[${board.title}]]</td>
+                <td>[[${board.writer}]]</td>
+                <td>[[${#temporals.format(board.regDate, 'MM/dd hh:mm')}]]</td>
             </tr>
             </tbody>
         </table>
