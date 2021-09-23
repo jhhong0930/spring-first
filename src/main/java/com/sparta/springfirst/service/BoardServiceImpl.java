@@ -73,4 +73,10 @@ public class BoardServiceImpl implements BoardService{
             repository.save(entity);
         }
     }
+
+    @Override
+    public void delete(Long id) {
+
+        repository.deleteById(id);
+    }
 }

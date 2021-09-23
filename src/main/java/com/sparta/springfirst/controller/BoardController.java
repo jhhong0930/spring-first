@@ -91,6 +91,10 @@ public class BoardController {
         return "boards/update";
     }
 
+    /**
+     * 게시글 수정
+     * @param dto
+     */
     @PostMapping("/edit")
     public String update(BoardDto dto, @ModelAttribute("requestDto") PageRequestDto requestDto, RedirectAttributes rttr) {
 
@@ -100,7 +104,20 @@ public class BoardController {
 
         Long id = dto.getId();
 
-
         return "redirect:/boards/" + id;
+    }
+
+    /**
+     * 게시글 삭제
+     * @param id
+     */
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id) {
+
+        log.info("id = {}", id);
+
+        service.delete(id);
+
+        return "redirect:/boards/list";
     }
 }

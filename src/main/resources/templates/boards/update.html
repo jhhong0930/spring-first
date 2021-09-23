@@ -52,6 +52,9 @@
             var actionForm = $("form");
 
             $(".removeBtn").click(function() {
+                if (!confirm("삭제 하시겠습니까?")) {
+                    return;
+                }
 
                 actionForm
                     .attr("action", "/boards/" + [[${dto.id}]] +"/delete")
@@ -61,7 +64,7 @@
             });
 
             $(".modifyBtn").click(function() {
-                if (!confirm("수정하시겠습니까?")) {
+                if (!confirm("수정 하시겠습니까?")) {
                     return;
                 }
 
