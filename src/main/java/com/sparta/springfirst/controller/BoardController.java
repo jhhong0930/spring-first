@@ -1,6 +1,7 @@
 package com.sparta.springfirst.controller;
 
 import com.sparta.springfirst.dto.BoardDto;
+import com.sparta.springfirst.dto.PageRequestDto;
 import com.sparta.springfirst.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,11 @@ public class BoardController {
      * 목록 화면
      */
     @GetMapping("/boards/list")
-    public void getList(Model model) {
-        model.addAttribute("result", service.getList());
+    public void getList(PageRequestDto pageRequestDto, Model model) {
+
+        log.info("list = {}", pageRequestDto);
+
+        model.addAttribute("result", service.getList(pageRequestDto));
     }
 
     /**

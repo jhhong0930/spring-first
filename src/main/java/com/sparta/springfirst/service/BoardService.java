@@ -2,6 +2,8 @@ package com.sparta.springfirst.service;
 
 import com.sparta.springfirst.domain.Board;
 import com.sparta.springfirst.dto.BoardDto;
+import com.sparta.springfirst.dto.PageRequestDto;
+import com.sparta.springfirst.dto.PageResultDto;
 
 import java.util.List;
 
@@ -10,8 +12,8 @@ public interface BoardService {
     // 게시글 추가
     Long register(BoardDto dto);
 
-    // 게시글 목록 조회(페이징 X)
-    List<Board> getList();
+    // 게시글 목록 조회(페이징 O)
+    PageResultDto<BoardDto, Board> getList(PageRequestDto requestDto);
 
     // 게시글 조회
     BoardDto read(Long id);
