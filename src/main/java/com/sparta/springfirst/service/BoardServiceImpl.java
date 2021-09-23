@@ -57,4 +57,20 @@ public class BoardServiceImpl implements BoardService{
 
         return result.map(this::entityToDto).orElseThrow(() -> new NullPointerException("존재하지 않는 게시글입니다."));
     }
+
+    @Override
+    public void update(BoardDto dto) {
+
+        Optional<Board> result = repository.findById(dto.getId());
+
+        if (result.isPresent()) {
+
+            Board entity = result.get();
+
+            entity.changeTitle(dto.getTitle());
+            entity.changeContent(dto.getContent());
+
+            repository.save(entity);
+        }
+    }
 }

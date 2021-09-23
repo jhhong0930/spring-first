@@ -44,6 +44,7 @@ public class BoardController {
 
     /**
      * 게시글 등록
+     *
      * @param dto
      */
     @PostMapping("/new")
@@ -60,6 +61,7 @@ public class BoardController {
 
     /**
      * 게시글 조회
+     *
      * @param id
      */
     @GetMapping("/{id}")
@@ -74,4 +76,31 @@ public class BoardController {
         return "/boards/read";
     }
 
+    /**
+     * 게시글 수정 폼
+     */
+    @GetMapping("/{id}/edit")
+    public String update(@PathVariable Long id, Model model) {
+
+        log.info("id = {}", id);
+
+        BoardDto dto = service.read(id);
+
+        model.addAttribute("dto", dto);
+
+        return "boards/update";
+    }
+
+    @PostMapping("/edit")
+    public String update(BoardDto dto, @ModelAttribute("requestDto") PageRequestDto requestDto, RedirectAttributes rttr) {
+
+        log.info("dto = {}", dto);
+
+        service.update(dto);
+
+        Long id = dto.getId();
+
+
+        return "redirect:/boards/" + id;
+    }
 }

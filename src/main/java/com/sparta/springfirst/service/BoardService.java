@@ -18,6 +18,9 @@ public interface BoardService {
     // 게시글 조회
     BoardDto read(Long id);
 
+    // 게시글 수정
+    void update(BoardDto dto);
+
     default BoardDto entityToDto(Board entity) {
 
         BoardDto dto = BoardDto.builder()
