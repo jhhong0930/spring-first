@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
-@RequestMapping("/boards")
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -20,13 +19,13 @@ public class BoardController {
 
     @GetMapping("/")
     public String mainPage() {
-        return "redirect:/boards/list";
+        return "index";
     }
 
     /**
      * 목록 화면
      */
-    @GetMapping("/list")
+    @GetMapping("/boards/list")
     public void getList(PageRequestDto pageRequestDto, Model model) {
 
         log.info("list = {}", pageRequestDto);
@@ -37,7 +36,7 @@ public class BoardController {
     /**
      * 새 게시글 등록 폼
      */
-    @GetMapping("/new")
+    @GetMapping("/boards/new")
     public String register() {
         return "boards/register";
     }
@@ -47,7 +46,7 @@ public class BoardController {
      *
      * @param dto
      */
-    @PostMapping("/new")
+    @PostMapping("/boards/new")
     public String register(BoardDto dto, RedirectAttributes rttr) {
 
         log.info("dto = {}", dto);
@@ -64,7 +63,7 @@ public class BoardController {
      *
      * @param id
      */
-    @GetMapping("/{id}")
+    @GetMapping("/boards/{id}")
     public String read(@PathVariable Long id, Model model) {
 
         log.info("id = {}", id);
@@ -79,7 +78,7 @@ public class BoardController {
     /**
      * 게시글 수정 폼
      */
-    @GetMapping("/{id}/edit")
+    @GetMapping("/boards/{id}/edit")
     public String update(@PathVariable Long id, Model model) {
 
         log.info("id = {}", id);
@@ -95,7 +94,7 @@ public class BoardController {
      * 게시글 수정
      * @param dto
      */
-    @PostMapping("/edit")
+    @PostMapping("/boards/edit")
     public String update(BoardDto dto, @ModelAttribute("requestDto") PageRequestDto requestDto, RedirectAttributes rttr) {
 
         log.info("dto = {}", dto);
@@ -111,7 +110,7 @@ public class BoardController {
      * 게시글 삭제
      * @param id
      */
-    @PostMapping("/{id}/delete")
+    @PostMapping("/boards/{id}/delete")
     public String delete(@PathVariable Long id) {
 
         log.info("id = {}", id);

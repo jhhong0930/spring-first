@@ -32,7 +32,7 @@ class BoardRepositoryTest {
         });
     }
 
-    @Test
+//    @Test
     @DisplayName("수정 시간 테스트")
     void testUpdate() {
 

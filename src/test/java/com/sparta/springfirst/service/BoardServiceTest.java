@@ -17,7 +17,7 @@ class BoardServiceTest {
     @Autowired
     private BoardService service;
 
-    @Test
+//    @Test
     @DisplayName("게시글 추가 테스트")
     void testRegister() {
 
@@ -30,7 +30,7 @@ class BoardServiceTest {
         System.out.println(service.register(dto));
     }
 
-    @Test
+//    @Test
     @DisplayName("목록 조회 테스트")
     void testGetList() {
 
@@ -54,7 +54,7 @@ class BoardServiceTest {
         resultDTO.getPageList().forEach(System.out::println);
     }
 
-    @Test
+//    @Test
     @DisplayName("게시글 조회 테스트")
     void testRead() {
         System.out.println(service.read(100L));

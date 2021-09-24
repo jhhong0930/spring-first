@@ -1,6 +1,5 @@
 package com.sparta.springfirst.service;
 
-import com.querydsl.core.BooleanBuilder;
 import com.sparta.springfirst.domain.Board;
 import com.sparta.springfirst.domain.BoardRepository;
 import com.sparta.springfirst.dto.BoardDto;
