@@ -19,18 +19,20 @@ public class BoardController {
 
     @GetMapping("/")
     public String mainPage() {
-        return "index";
+        return "redirect:/boards/list";
     }
 
     /**
      * 목록 화면
      */
     @GetMapping("/boards/list")
-    public void getList(PageRequestDto pageRequestDto, Model model) {
+    public String getList(PageRequestDto pageRequestDto, Model model) {
 
         log.info("list = {}", pageRequestDto);
 
         model.addAttribute("result", service.getList(pageRequestDto));
+
+        return "./boards/list.html";
     }
 
     /**
@@ -43,7 +45,6 @@ public class BoardController {
 
     /**
      * 게시글 등록
-     *
      * @param dto
      */
     @PostMapping("/boards/new")
@@ -60,7 +61,6 @@ public class BoardController {
 
     /**
      * 게시글 조회
-     *
      * @param id
      */
     @GetMapping("/boards/{id}")
@@ -72,7 +72,7 @@ public class BoardController {
 
         model.addAttribute("dto", dto);
 
-        return "/boards/read";
+        return "./boards/read.html";
     }
 
     /**
@@ -87,7 +87,7 @@ public class BoardController {
 
         model.addAttribute("dto", dto);
 
-        return "boards/update";
+        return "./boards/update.html";
     }
 
     /**
